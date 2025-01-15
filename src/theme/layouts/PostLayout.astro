@@ -1,6 +1,6 @@
 ---
 import config from '../consts'
-import { getEntry } from 'astro:content'
+import { getEntry, render } from 'astro:content'
 import { isNil } from 'ramda'
 import ArticleToc from '../components/ArticleToc.astro'
 import BaseHead from '../components/BaseHead.astro'
@@ -25,12 +25,13 @@ if (isNil(product)) {
 	throw new Error(`${slug} not found`)
 }
 
-const headings = product.rendered?.metadata?.headings as MarkdownHeading[]
+const { Content, headings } = await render(product)
 
-const html = product.rendered?.html
 const {
 	data: { title, description },
 } = product
+
+const hasHeadings = headings && headings.length > 0
 ---
 
 <script>
@@ -47,14 +48,12 @@ const {
 	<body class="flex flex-col h-screen">
 		<Header />
 		<ScrollArea class="flex-1 flex w-full">
-			{headings && <section class="basis-1/5 lg:flex hidden" />}
+			{hasHeadings && <section class="basis-1/5 lg:flex hidden" />}
 			<ScrollArea id="main-scroll" class="flex-1">
 				<main class="max-w-prose p-4 mx-auto flex flex-col gap-8">
-					<article
-						class="prose dark:prose-invert"
-						data-pagefind-body
-						set:html={html}
-					/>
+					<article class="prose dark:prose-invert" data-pagefind-body>
+						<Content />
+					</article>
 					<LicenseCard
 						title={title}
 						url={Astro.url.href}
@@ -66,7 +65,7 @@ const {
 				<Footer />
 			</ScrollArea>
 			{
-				headings && (
+				hasHeadings && (
 					<ScrollArea class="basis-1/4 lg:basis-1/5 md:(flex border-l border-neutral) flex-col hidden">
 						<ArticleToc headings={headings} />
 					</ScrollArea>

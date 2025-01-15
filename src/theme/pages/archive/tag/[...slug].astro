@@ -17,15 +17,24 @@ export interface Props {
 }
 
 export const getStaticPaths = (async () => {
-	const posts = await R.pipe(getCollection, getAllPostsInfo)('blog')
+	const posts = await getAllPostsInfo(getCollection('blog'))
 	const tags = aggregateByTag(posts)
-	return Array.from(tags.entries()).map(([tag, posts]) => ({
-		params: { slug: tag },
-		props: { tag, posts },
-	}))
+	return Array.from(tags.entries())
+		.map(([tag, posts]) => [
+			{
+				params: { slug: tag },
+				props: { tag, posts },
+			},
+			{
+				params: { slug: encodeURIComponent(tag) },
+				props: { tag, posts },
+			},
+		])
+		.flat()
 }) satisfies GetStaticPaths
 
-const { tag, posts } = Astro.props
+let { tag, posts } = Astro.props
+tag = decodeURIComponent(tag)
 ---
 
 <HomeLayout>
