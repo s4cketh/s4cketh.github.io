@@ -1,5 +1,5 @@
 ---
-import config from '@/consts'
+import config from '../consts'
 import { getEntry } from 'astro:content'
 import { isNil } from 'ramda'
 import ArticleToc from '../components/ArticleToc.astro'
@@ -10,8 +10,9 @@ import Header from '../components/Header.astro'
 import LicenseCard from '../components/LicenseCard.astro'
 import ScrollArea from '../components/ScrollArea.astro'
 import { getLanguageCode } from '../lib/utils'
-import '@/theme/styles/global.scss'
-import '@/theme/styles/post.scss'
+import '../styles/global.scss'
+import '../styles/post.scss'
+import type { MarkdownHeading } from 'astro'
 
 type Props = {
 	slug: string
@@ -23,7 +24,9 @@ const product = await getEntry('blog', slug)
 if (isNil(product)) {
 	throw new Error(`${slug} not found`)
 }
-const { Content, headings } = await product.render()
+
+const headings = product.rendered?.metadata?.headings as MarkdownHeading[]
+const html = product.rendered?.html
 const {
 	data: { title, description },
 } = product
@@ -46,9 +49,11 @@ const {
 			<section class="basis-1/5 lg:flex hidden"></section>
 			<ScrollArea id="main-scroll" class="flex-1">
 				<main class="max-w-prose p-4 mx-auto flex flex-col gap-8">
-					<article class="prose dark:prose-invert" data-pagefind-body>
-						<Content />
-					</article>
+					<article
+						class="prose dark:prose-invert"
+						data-pagefind-body
+						set:html={html}
+					/>
 					<LicenseCard
 						title={title}
 						url={Astro.url.href}
