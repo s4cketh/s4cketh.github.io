@@ -16,7 +16,7 @@ const lastCommitDateCache = new Map<string, Date>()
 export async function getLastCommitTime(filePath: string) {
 	return readMap(lastCommitDateCache, filePath, async () => {
 		const { latest } = await getFileLog(filePath)
-		return latest?.date ? new Date(latest.date) : new Date()
+		return latest?.date ? new Date(latest.date) : undefined
 	})
 }
 
@@ -25,7 +25,7 @@ export async function getFirstCommitTime(filePath: string) {
 	return readMap(firstCommitDateCache, filePath, async () => {
 		const { all, total } = await getFileLog(filePath)
 		const ctime = all[total - 1]?.date
-		return ctime ? new Date(ctime) : new Date()
+		return ctime ? new Date(ctime) : undefined
 	})
 }
 

@@ -49,11 +49,13 @@ export async function getPostInfo(entry: Entry) {
 			_entry.data.date ??
 			_entry.data.ctime ??
 			_entry.data.pubDate ??
-			(await getFirstCommitTime(filePath))
+			(await getFirstCommitTime(filePath)) ??
+			new Date()
 		const mtime =
 			_entry.data.mtime ??
 			_entry.data.updatedDate ??
-			(await getLastCommitTime(filePath))
+			(await getLastCommitTime(filePath)) ??
+			new Date()
 		const tags = uniq(
 			_entry.data.tags ?? (id ? path.dirname(id).split('/') : []),
 		)
