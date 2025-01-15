@@ -26,6 +26,7 @@ if (isNil(product)) {
 }
 
 const headings = product.rendered?.metadata?.headings as MarkdownHeading[]
+
 const html = product.rendered?.html
 const {
 	data: { title, description },
@@ -46,7 +47,7 @@ const {
 	<body class="flex flex-col h-screen">
 		<Header />
 		<ScrollArea class="flex-1 flex w-full">
-			<section class="basis-1/5 lg:flex hidden"></section>
+			{headings && <section class="basis-1/5 lg:flex hidden" />}
 			<ScrollArea id="main-scroll" class="flex-1">
 				<main class="max-w-prose p-4 mx-auto flex flex-col gap-8">
 					<article
@@ -64,11 +65,13 @@ const {
 				</main>
 				<Footer />
 			</ScrollArea>
-			<ScrollArea
-				class="basis-1/4 lg:basis-1/5 md:(flex border-l border-neutral) flex-col hidden"
-			>
-				<ArticleToc headings={headings} />
-			</ScrollArea>
+			{
+				headings && (
+					<ScrollArea class="basis-1/4 lg:basis-1/5 md:(flex border-l border-neutral) flex-col hidden">
+						<ArticleToc headings={headings} />
+					</ScrollArea>
+				)
+			}
 		</ScrollArea>
 	</body>
 </html>

@@ -44,7 +44,7 @@ export async function getPostInfo(entry: Entry) {
 	// @ts-ignore
 	const id = _entry.id ?? _entry.slug
 	return readMap(infoCache, `${_entry.collection}+${id}`, async () => {
-		const filePath = getMarkdownFilePath(_entry.collection, _entry.id)
+		const filePath = getMarkdownFilePath(_entry.collection, id)
 		const ctime =
 			_entry.data.date ??
 			_entry.data.ctime ??
