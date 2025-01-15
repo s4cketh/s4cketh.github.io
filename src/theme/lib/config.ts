@@ -33,11 +33,10 @@ export interface ThemeConfig {
 			alt: string
 		}
 	}
+	pages?: {
+		aboutMe?: string
+	}
 	comment?: {
 		giscus?: GiscusConfig
 	}
-}
-
-export function defineThemeConfig(config: ThemeConfig) {
-	return config
 }

@@ -1,8 +1,6 @@
 import theme from '.'
 import { defineConfig } from 'astro/config'
 
-import vue from '@astrojs/vue'
-
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://example.com',
@@ -22,6 +20,9 @@ export default defineConfig({
 					url: 'https://avatars.githubusercontent.com/u/62047803?v=4',
 					alt: 'Meo',
 				},
+			},
+			pages: {
+				aboutMe: '/about',
 			},
 		}),
 	],

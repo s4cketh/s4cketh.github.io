@@ -39,12 +39,16 @@ const formattedTotalWords = numbro(totalWords).format({
 			<div class="text-caption">字数</div>
 		</div>
 	</div>
-	<a
-		href="/about"
-		class="bg-primary hover:bg-opacity-80 text-primary-content p-2 hover:shadow-md hover:shadow-primary/20 w-full cursor-pointer rounded-full text-center"
-	>
-		关于我
-	</a>
+	{
+		config.pages?.aboutMe && (
+			<a
+				href={config.pages.aboutMe}
+				class="bg-primary hover:bg-opacity-80 text-primary-content p-2 hover:shadow-md hover:shadow-primary/20 w-full cursor-pointer rounded-full text-center"
+			>
+				关于我
+			</a>
+		)
+	}
 </div>
 
 <style scoped>
