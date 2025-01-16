@@ -14,7 +14,7 @@ pnpm add https://github.com/miaobuao/astro-theme.git
 
 ```ts
 // astro.config.mjs
-import theme from '@meo/astro-blog-theme'
+import theme from 'astro-theme-meo'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
@@ -51,11 +51,11 @@ export default defineConfig({
 
 ```mdx
 ---
-layout: '@meo/astro-blog-theme/layouts/HomeLayout.astro'
+layout: 'astro-theme-meo/layouts/HomeLayout.astro'
 ---
 
-import '@meo/astro-blog-theme/styles/post.scss'
-import Footer from '@meo/astro-blog-theme/components/Footer.astro'
+import 'astro-theme-meo/styles/post.scss'
+import Footer from 'astro-theme-meo/components/Footer.astro'
 
 <main class="flex justify-center items-center">
 <article class="prose dark:prose-invert p-4">

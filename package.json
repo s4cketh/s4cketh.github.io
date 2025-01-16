@@ -1,5 +1,5 @@
 {
-	"name": "@meo/astro-blog-theme",
+	"name": "astro-theme-meo",
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
