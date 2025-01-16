@@ -1,14 +1,16 @@
 This theme is installed as an integration of Astro, which makes the git commit history clearer and makes it easier to upgrade the theme when a new version is released.
 
+If you don't have an existing Astro project, you can refer to the [official documentation](https://docs.astro.build/en/install-and-setup/) to initialize the project.
+
 ## Usage
 
-### Install Dependencies
+### Install dependencies
 
 ```sh
 pnpm add https://github.com/miaobuao/astro-theme.git
 ```
 
-### Configure Astro
+### Configure astro
 
 Update your `astro.config.mjs`:
 
@@ -45,9 +47,9 @@ export default defineConfig({
 })
 ```
 
-### Customize "About Me" Page
+### Customize "About Me" page
 
-You can write your own information in `src/pages/about.mdx`. To maintain a consistent design style, you can use the layout we provide (of course, you can also write your own Astro page):
+You can write information about yourself in `src/pages/about.mdx`. To maintain a consistent design style, you can use the layout we provide (of course, you can also write your own astro page):
 
 ```mdx
 ---
