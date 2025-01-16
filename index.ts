@@ -1,6 +1,7 @@
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
+import rehypeAstroRelativeMarkdownLinks from 'astro-rehype-relative-markdown-links'
 import playformCompress from '@playform/compress'
 import { transformerColorizedBrackets } from '@shikijs/colorized-brackets'
 import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
@@ -116,6 +117,7 @@ export default function ThemeIntegration(
 							...(config.markdown?.remarkPlugins ?? []),
 						]),
 						rehypePlugins: uniq([
+							rehypeAstroRelativeMarkdownLinks,
 							rehypeHeadingIds,
 							[rehypeAutoLinkHeadings, { behavior: 'wrap' }],
 							rehypeSlug,
