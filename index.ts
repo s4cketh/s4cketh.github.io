@@ -90,10 +90,11 @@ export default function ThemeIntegration(
 						assetsInclude: ['**/*.{zip,jpg,jpeg,png,gif,webp,svg,bmp}'],
 						build: {
 							cssTarget: 'chrome61',
+							...config.vite?.build,
 						},
-						plugins: [vitePlugin],
+						plugins: [vitePlugin, ...(config.vite?.plugins ?? [])],
 					},
-					prefetch: {
+					prefetch: config.prefetch ?? {
 						prefetchAll: true,
 						defaultStrategy: 'viewport',
 					},
@@ -101,39 +102,49 @@ export default function ThemeIntegration(
 						syntaxHighlight: 'shiki',
 						shikiConfig: {
 							wrap: true,
-							transformers: [transformerColorizedBrackets()],
+							transformers: [
+								transformerColorizedBrackets(),
+								...(config.markdown?.shikiConfig?.transformers ?? []),
+							],
 						},
-						gfm: false,
+						gfm: config.markdown.gfm,
 						remarkPlugins: uniq([
-							...config.markdown.remarkPlugins,
 							remarkFootnotesExtra,
 							remarkDirective,
 							remarkGithubAdmonitionsToDirectives,
 							remarkMath,
+							...(config.markdown?.remarkPlugins ?? []),
 						]),
 						rehypePlugins: uniq([
-							...config.markdown.rehypePlugins,
 							rehypeHeadingIds,
 							[rehypeAutoLinkHeadings, { behavior: 'wrap' }],
 							rehypeSlug,
 							[rehypeKatex, { output: 'mathml' }],
+							...(config.markdown?.rehypePlugins ?? []),
 						]),
 					},
 					integrations: [
-						mdx(),
-						vue(),
-						UnoCSS({
-							injectReset: true,
-							...unoConfig,
-						}),
-						pagefind(),
-						playformCompress({
-							CSS: true,
-							HTML: true,
-							JavaScript: true,
-							SVG: true,
-						}),
-						sitemap(),
+						...[
+							mdx(),
+							vue(),
+							UnoCSS({
+								injectReset: true,
+								...unoConfig,
+							}),
+							pagefind(),
+							playformCompress({
+								CSS: true,
+								HTML: true,
+								JavaScript: true,
+								SVG: true,
+							}),
+							sitemap(),
+						].filter(
+							(integration) =>
+								!config.integrations.find((d) => d.name === integration.name),
+						),
+						...(config.integrations?.filter((d) => d.name !== packageName) ??
+							[]),
 					],
 				})
 			},
