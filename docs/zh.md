@@ -40,7 +40,7 @@ export default defineConfig({
 				aboutMe: '/about',
 			},
 		}),
-        // ... other integrations
+		// ... other integrations
 	],
 })
 ```
@@ -51,11 +51,11 @@ export default defineConfig({
 
 ```mdx
 ---
-layout: "@meo/astro-blog-theme/layouts/HomeLayout.astro"
+layout: '@meo/astro-blog-theme/layouts/HomeLayout.astro'
 ---
 
-import "@meo/astro-blog-theme/styles/post.scss"
-import Footer from "@meo/astro-blog-theme/components/Footer.astro"
+import '@meo/astro-blog-theme/styles/post.scss'
+import Footer from '@meo/astro-blog-theme/components/Footer.astro'
 
 <main class="flex justify-center items-center">
 <article class="prose dark:prose-invert p-4">

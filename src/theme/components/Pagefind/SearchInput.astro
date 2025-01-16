@@ -33,7 +33,7 @@ const { class: className, blur, ...props } = Astro.props
 	<pagefind-mask
 		class="hidden fixed inset-0 bg-black/50 z-10 transition-all"
 		data-blur={blur ? 'true' : 'false'}></pagefind-mask>
-	<input type="text" class="grow" placeholder="🔍 搜索文章" />
+	<input type="text" class="grow" />
 	<button class="btn btn-circle btn-ghost btn-sm p-0 hidden" name="clear">
 		<ClearIcon />
 	</button>

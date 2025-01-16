@@ -1,4 +1,9 @@
 import { debounce } from 'lodash-es'
+import type { PagefindSearchResults } from './PagefindSearchResults'
+import { translate, useI18nSource } from '../../i18n'
+import { getNavigatorLocale } from '../../i18n/utils'
+
+const t = useI18nSource()
 
 class PagefindSearchInput extends HTMLElement {
 	input = this.querySelector('input')!
@@ -9,6 +14,14 @@ class PagefindSearchInput extends HTMLElement {
 	mask: PagefindMask = this.querySelector('pagefind-mask')!
 
 	connectedCallback() {
+		setInterval(() => {
+			const text = translate({
+				locale: getNavigatorLocale(),
+				text: t.searchArticle,
+			})
+			this.input.placeholder = `🔍 ${text}`
+		}, 1000)
+
 		this.input.addEventListener('keyup', (e) => {
 			if (e.isComposing) {
 				return
@@ -77,7 +90,7 @@ class PagefindSearchInput extends HTMLElement {
 		if (searchResults.results.length) {
 			this.mask?.show()
 		}
-		searchResults.results.forEach(async (res) => {
+		searchResults.results.forEach(async (res: any) => {
 			this.results.push(await res.data())
 		})
 	}, 200)

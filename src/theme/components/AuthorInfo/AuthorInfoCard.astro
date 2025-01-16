@@ -5,6 +5,8 @@ import numbro from 'numbro'
 import config from '../../consts'
 import { getSafePostsInfo } from '../../lib/post'
 import AuthorAvatar from './AuthorAvatar.astro'
+import { useI18nSource } from '../../i18n'
+import Translate from '../Translate.astro'
 
 type Props = HTMLAttributes<'div'>
 const { class: className, ...props } = Astro.props
@@ -15,6 +17,7 @@ const formattedTotalWords = numbro(totalWords).format({
 	average: true,
 	mantissa: 1,
 })
+const t = useI18nSource()
 ---
 
 <div class:list={['flex flex-col items-center gap-4', className]} {...props}>
@@ -32,11 +35,15 @@ const formattedTotalWords = numbro(totalWords).format({
 	<div class="flex w-full">
 		<div class="flex-1">
 			<div class="text-title">{totalArticles}</div>
-			<div class="text-caption">文章</div>
+			<div class="text-caption">
+				<Translate t={t.article} />
+			</div>
 		</div>
 		<div class="flex-1">
 			<div class="text-title">{formattedTotalWords}</div>
-			<div class="text-caption">字数</div>
+			<div class="text-caption">
+				<Translate t={t.wordCount} />
+			</div>
 		</div>
 	</div>
 	{
@@ -45,7 +52,7 @@ const formattedTotalWords = numbro(totalWords).format({
 				href={config.pages.aboutMe}
 				class="bg-primary hover:bg-opacity-80 text-primary-content p-2 hover:shadow-md hover:shadow-primary/20 w-full cursor-pointer rounded-full text-center"
 			>
-				关于我
+				<Translate t={t.aboutMe} />
 			</a>
 		)
 	}

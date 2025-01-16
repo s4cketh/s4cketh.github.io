@@ -1,7 +1,7 @@
 import type { PagefindResult } from './pagefind'
 import { PagefindSearchResultItem } from './PagefindSearchResultItem'
 
-class PagefindSearchResults extends HTMLElement {
+export class PagefindSearchResults extends HTMLElement {
 	clear() {
 		this.innerHTML = ''
 	}
