@@ -1,6 +1,6 @@
 import type { ImageMetadata } from 'astro'
 import type { MaybePromise } from 'astro/actions/runtime/utils.js'
-import type { AnyEntryMap, CollectionEntry } from 'astro:content'
+import { render, type AnyEntryMap, type CollectionEntry } from 'astro:content'
 import { uniq } from 'lodash-es'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { toString } from 'mdast-util-to-string'
@@ -8,7 +8,6 @@ import path from 'node:path'
 import getReadingTime from 'reading-time'
 import { remark } from 'remark'
 import * as visit from 'unist-util-visit'
-import { getMarkdownFilePath } from './file'
 import { getFirstCommitTime, getLastCommitTime } from './git'
 import { readMap } from './map'
 
@@ -44,7 +43,7 @@ export async function getPostInfo(entry: Entry) {
 	// @ts-ignore
 	const id = _entry.id ?? _entry.slug
 	return readMap(infoCache, `${_entry.collection}+${id}`, async () => {
-		const filePath = getMarkdownFilePath(_entry.collection, id)
+		const filePath = _entry.filePath!
 		const ctime =
 			_entry.data.date ??
 			_entry.data.ctime ??
@@ -59,8 +58,11 @@ export async function getPostInfo(entry: Entry) {
 		const tags = uniq(
 			_entry.data.tags ?? (id ? path.dirname(id).split('/') : []),
 		)
-		// TODO: read h1 as title
-		const title = _entry.data.title ?? path.basename(id ?? '')
+		const { headings } = await render(_entry)
+		const h1 = headings.find((h) => h.depth === 1)
+		const fileExt = path.extname(filePath)
+		const title =
+			_entry.data.title ?? h1?.text ?? path.basename(filePath ?? '', fileExt)
 		const readingTime = getReadingTimeFromMarkdown(_entry.body ?? '')
 		const cover = _entry.data.cover ?? _entry.data.heroImage
 		return {

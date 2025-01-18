@@ -1,10 +1,6 @@
 import { dirname, resolve } from 'node:path'
 import process from 'node:process'
 
-export function getMarkdownFilePath(collection: string, id: string) {
-	return resolve(process.cwd(), 'src/content', collection, id)
-}
-
 export function getTagsFromId(id: string) {
 	return dirname(id)
 		.split('/')
