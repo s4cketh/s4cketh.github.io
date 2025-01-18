@@ -18,7 +18,10 @@ const summaryHtml = marked(summary)
 ---
 
 <div
-	class:list={['flex relative rounded-box border border-base-300', className]}
+	class:list={[
+		'flex relative rounded-box border border-base-300 hover:brightness-200',
+		className,
+	]}
 >
 	<!-- cover -->
 	{
@@ -38,7 +41,7 @@ const summaryHtml = marked(summary)
 	}
 	<div
 		class:list={[
-			'flex w-full flex-col p-4 gap-2 rounded-box bg-base-100/60 backdrop-blur-none',
+			'flex w-full flex-col p-4 gap-2 rounded-box bg-base-100/50 hover:brightness-100 backdrop-blur-none',
 			'md:(p-6 gap-y-5)',
 		]}
 	>
