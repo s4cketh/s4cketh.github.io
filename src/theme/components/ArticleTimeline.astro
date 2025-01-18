@@ -26,12 +26,14 @@ function formatDatetime(datetime: number | Date) {
 }
 ---
 
-<div class:list={['font-mono text-xl', className]} {...otherProps}>
+<div class:list={['font-mono flex flex-col gap-1', className]} {...otherProps}>
 	{
 		Object.entries(groupedArticles).map(([year, articles]) => (
 			<div class="my-4">
-				<div class="mb-2 text-2xl font-bold">{year}</div>
-				<ul class="flex flex-col gap-2">
+				<div class="text-3xl font-extrabold leading-relaxed opacity-80">
+					{year}
+				</div>
+				<ul class="flex flex-col gap-2 text-xl">
 					{R.sort(descendByCreateTime, articles).map((d: IPostInfo) => (
 						<li class="hover:(bg-neutral text-neutral-content) rounded-box transition">
 							<a href={d.link} class="flex gap-x-2">
