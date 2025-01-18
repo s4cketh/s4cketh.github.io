@@ -4,6 +4,7 @@ import {
 	presetAttributify,
 	presetTypography,
 	presetUno,
+	presetIcons,
 	transformerDirectives,
 	transformerVariantGroup,
 } from 'unocss'
@@ -33,6 +34,13 @@ export default defineConfig({
 		presetScrollbarHide(),
 		presetAttributify(),
 		presetTypography(),
+		presetIcons({
+			collections: {
+				'lets-icons': () =>
+					import('@iconify-json/lets-icons/icons.json').then((i) => i.default),
+				ri: () => import('@iconify-json/ri/icons.json').then((i) => i.default),
+			},
+		}),
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 })

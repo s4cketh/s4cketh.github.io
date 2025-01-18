@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
-import { Copyright, Share2 } from 'lucide-vue-next'
 import ShareButton from './ShareButton.astro'
 import Translate from './Translate.astro'
 import { useI18nSource } from '../i18n'
@@ -31,9 +30,13 @@ const t = useI18nSource()
 	]}
 	{...props}
 >
-	<Copyright
+	<!-- <Copyright
 		class="absolute -bottom-12 -right-12 size-52 -z-[1] overflow-clip opacity-20"
-	/>
+	/> -->
+	<div
+		class="i-ri:copyright-line absolute -bottom-12 -right-12 size-52 -z-[1] overflow-clip opacity-20"
+	>
+	</div>
 	{title && <div class="font-bold">{title}</div>}
 	{
 		author && (
@@ -52,6 +55,6 @@ const t = useI18nSource()
 		text={description}
 		class="absolute right-0 top-0 m-2"
 	>
-		<Share2 class="size-6 mask-square" />
+		<div class="i-lets-icons:link size-6"></div>
 	</ShareButton>
 </section>

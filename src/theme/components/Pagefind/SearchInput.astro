@@ -1,6 +1,5 @@
 ---
 import { HTMLAttributes } from 'astro/type'
-import { X as ClearIcon } from 'lucide-vue-next'
 
 type Props = HTMLAttributes<'div'> & {
 	blur?: boolean
@@ -35,7 +34,7 @@ const { class: className, blur, ...props } = Astro.props
 		data-blur={blur ? 'true' : 'false'}></pagefind-mask>
 	<input type="text" class="grow" />
 	<button class="btn btn-circle btn-ghost btn-sm p-0 hidden" name="clear">
-		<ClearIcon />
+		<div class="i-lets-icons:close-round-light size-7"></div>
 	</button>
 	<pagefind-search-results
 		class="absolute w-full top-full left-0 overflow-y-auto z-10 flex flex-col gap-2 mt-2"
