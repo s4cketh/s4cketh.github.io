@@ -17,10 +17,7 @@ const summaryHtml = marked(summary)
 ---
 
 <div
-	class:list={[
-		'flex relative rounded-box border border-base-300 hover:brightness-200',
-		className,
-	]}
+	class:list={['flex relative rounded-box border border-base-300', className]}
 >
 	<!-- cover -->
 	{
@@ -40,7 +37,8 @@ const summaryHtml = marked(summary)
 	}
 	<div
 		class:list={[
-			'flex w-full flex-col p-4 gap-2 rounded-box bg-base-100/50 hover:brightness-100 backdrop-blur-none',
+			'transition-colors',
+			'flex w-full flex-col p-4 gap-2 rounded-box bg-base-100/75 hover:bg-base-200/60 backdrop-blur-none',
 			'md:(p-6 gap-y-5)',
 		]}
 	>
@@ -49,7 +47,7 @@ const summaryHtml = marked(summary)
 			class:list={[
 				'transition group block font-semibold text-xl relative',
 				'md:text-2xl',
-				'hover:(text-primary)',
+				'hover:(text-primary brightness-200)',
 				'dark:(font-bold)',
 			]}
 		>
@@ -69,7 +67,7 @@ const summaryHtml = marked(summary)
 		</a>
 
 		<!-- tags -->
-		<div class="flex items-center gap-x-2">
+		<div class="flex items-center gap-x-2 hover:brightness-200">
 			{
 				info.tags.map((tag) => (
 					<LinkButton
