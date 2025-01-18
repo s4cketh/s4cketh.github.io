@@ -12,6 +12,8 @@ import ScrollArea from '../components/ScrollArea.astro'
 import { getLanguageCode } from '../lib/utils'
 import '../styles/global.scss'
 import '../styles/post.scss'
+import AuthorInfoCard from '../components/AuthorInfo/AuthorInfoCard.astro'
+import TagPercentage from '../components/AuthorInfo/TagPercentage.astro'
 
 type Props = {
 	slug: string
@@ -47,27 +49,66 @@ const hasHeadings = headings && headings.length > 0
 	<body class="flex flex-col h-screen">
 		<Header />
 		<ScrollArea class="flex-1 flex w-full">
-			{hasHeadings && <section class="basis-1/5 lg:flex hidden" />}
-			<ScrollArea id="main-scroll" class="flex-1">
-				<main class="max-w-prose p-4 mx-auto flex flex-col gap-8">
-					<article class="prose dark:prose-invert" data-pagefind-body>
-						<Content />
-					</article>
-					<LicenseCard
-						title={title}
-						url={Astro.url.href}
-						author={config.author.name}
-						description={`@${config.author.name}`}
-					/>
-					{config.comment?.giscus && <Giscus {...config.comment.giscus} />}
-				</main>
-				<Footer />
-			</ScrollArea>
 			{
-				hasHeadings && (
-					<ScrollArea class="basis-1/4 lg:basis-1/5 md:(flex border-l border-neutral) flex-col hidden">
-						<ArticleToc headings={headings} />
-					</ScrollArea>
+				hasHeadings ? (
+					<>
+						<ScrollArea class="basis-1/5 lg:flex hidden">
+							<ScrollArea class="mx-auto max-w-80 p-1 md:p-2 gap-4 w-full">
+								<AuthorInfoCard class="p-2 lg:p-4 lg:px-8" />
+							</ScrollArea>
+						</ScrollArea>
+						<ScrollArea id="main-scroll" class="flex-1">
+							<main class="max-w-[80ch] p-4 mx-auto flex flex-col gap-8">
+								<article
+									class="prose max-w-full dark:prose-invert"
+									data-pagefind-body
+								>
+									<Content />
+								</article>
+								<LicenseCard
+									title={title}
+									url={Astro.url.href}
+									author={config.author.name}
+									description={`@${config.author.name}`}
+								/>
+								{config.comment?.giscus && (
+									<Giscus {...config.comment.giscus} />
+								)}
+							</main>
+							<Footer />
+						</ScrollArea>
+						<ScrollArea class="basis-1/4 lg:basis-1/5 md:(flex border-l border-neutral) flex-col hidden">
+							<ArticleToc headings={headings} />
+						</ScrollArea>
+					</>
+				) : (
+					<>
+						<ScrollArea class="basis-1/4 lg:basis-1/5 md:flex hidden">
+							<ScrollArea class="mx-auto max-w-80 p-1 md:p-2 gap-4 w-full">
+								<AuthorInfoCard class="p-2 lg:p-4 lg:px-8" />
+							</ScrollArea>
+						</ScrollArea>
+						<ScrollArea id="main-scroll" class="flex-1">
+							<main class="p-4 mx-auto flex flex-col gap-8">
+								<article
+									class="prose max-w-full dark:prose-invert"
+									data-pagefind-body
+								>
+									<Content />
+								</article>
+								<LicenseCard
+									title={title}
+									url={Astro.url.href}
+									author={config.author.name}
+									description={`@${config.author.name}`}
+								/>
+								{config.comment?.giscus && (
+									<Giscus {...config.comment.giscus} />
+								)}
+							</main>
+							<Footer />
+						</ScrollArea>
+					</>
 				)
 			}
 		</ScrollArea>
