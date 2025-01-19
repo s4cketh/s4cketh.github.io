@@ -46,3 +46,5 @@ export function useI18nSource() {
 	ReplaceWithStringPath()(source)
 	return source as unknown as DeepKeyToPath<typeof source>
 }
+
+export const t = useI18nSource()

@@ -41,6 +41,8 @@ export default defineConfig({
 				ri: () => import('@iconify-json/ri/icons.json').then((i) => i.default),
 				ion: () =>
 					import('@iconify-json/ion/icons.json').then((i) => i.default),
+				'line-md': () =>
+					import('@iconify-json/line-md/icons.json').then((i) => i.default),
 			},
 		}),
 	],

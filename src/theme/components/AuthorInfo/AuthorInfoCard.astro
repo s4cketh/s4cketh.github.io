@@ -7,6 +7,7 @@ import { getSafePostsInfo } from '../../utils/post'
 import AuthorAvatar from './AuthorAvatar.astro'
 import { useI18nSource } from '../../i18n'
 import Translate from '../Translate.astro'
+import RssLink from '../links/RssLink.astro'
 
 type Props = HTMLAttributes<'div'>
 const { class: className, ...props } = Astro.props
@@ -25,8 +26,9 @@ const t = useI18nSource()
 		class:list="mask mask-squircle w-28 bg-neutral text-neutral-content font-semibold text-3xl"
 	/>
 	<div class="flex flex-col items-center gap-1 px-1">
-		<span class="font-semibold break-all">
+		<span class="flex gap-2 items-center font-semibold break-all">
 			{config.author.name}
+			<RssLink href="/rss.xml" class="size-4 hover:bg-primary" />
 		</span>
 		<span class="text-xs break-all px-1 opacity-80">
 			{config.author.signature}
