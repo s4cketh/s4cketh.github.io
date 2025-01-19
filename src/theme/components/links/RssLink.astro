@@ -6,4 +6,5 @@ type Props = HTMLAttributes<'a'>
 const { class: className, ...props } = Astro.props
 ---
 
-<a class:list={['i-line-md:rss', className]} {...props}></a>
+<a class:list={['i-line-md:rss', className]} {...props} aria-label="RSS Link">
+</a>
