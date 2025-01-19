@@ -46,22 +46,12 @@ const summaryHtml = marked(summary)
 		<a
 			href={info.link}
 			class:list={[
-				':uno: transition group block font-semibold text-xl relative md:text-2xl hover:(text-primary brightness-200) dark:(font-bold)',
+				':uno: relative transition block font-semibold text-xl md:text-2xl hover:(text-primary brightness-200) dark:(font-bold)',
+				':uno: before:(absolute w-1 h-full opacity-0 content-[""] transition bg-primary rounded-md -left-4 md:(-left-6) hover:(opacity-100))',
+				':uno: after:(absolute opacity-0 content-[""] i-lets-icons:expand-right size-5 inline transition bg-primary inline translate-y-1.5 hover:(opacity-100 translate-x-1))',
 			]}
 		>
-			<div
-				class:list={[
-					':uno: transition bg-primary w-1 h-full rounded-md absolute -left-4 opacity-0 md:(-left-6) group-hover:(opacity-100)',
-				]}
-			>
-			</div>
 			{info.title}
-			<div
-				class:list={[
-					':uno: i-lets-icons:expand-right size-5 stroke-primary transition absolute translate-y-1.5 md:translate-y-2 inline opacity-0 group-hover:(translate-x-1 opacity-100)',
-				]}
-			>
-			</div>
 		</a>
 
 		<!-- tags -->
