@@ -2,6 +2,7 @@ import { debounce } from 'lodash-es'
 import type { PagefindSearchResults } from './PagefindSearchResults'
 import { translate, useI18nSource } from '../../i18n'
 import { getNavigatorLocale } from '../../i18n/utils'
+import type { PagefindResult } from './pagefind'
 
 const t = useI18nSource()
 
@@ -93,7 +94,14 @@ class PagefindSearchInput extends HTMLElement {
 			this.mask?.show()
 		}
 		searchResults.results.forEach(async (res: any) => {
-			this.results.push(await res.data())
+			const data: PagefindResult = await res.data()
+			const slices = data.excerpt
+				.split('<mark>')
+				.map((slice) => slice.split('</mark>'))
+				.flat()
+				.map((s) => s.trim())
+			data.url += `#:~:text=${encodeURI(slices[1])}`
+			this.results.push(data)
 		})
 	}, 200)
 
