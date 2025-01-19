@@ -13,10 +13,7 @@ export class PagefindSearchResultItem extends HTMLElement {
 	connectedCallback() {
 		const link = this.querySelector('a')!
 		link.href = this.result.url
-
-		const title = this.querySelector('[slot="title"]') as HTMLParagraphElement
-		title.textContent = this.result.meta.title || 'Untitled'
-
+		link.textContent = this.result.meta.title || 'Untitled'
 		const excerpt = this.querySelector('.excerpt') as HTMLParagraphElement
 		excerpt.innerHTML = this.result.excerpt
 	}
