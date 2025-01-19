@@ -1,19 +1,24 @@
 import type { PagefindResult } from './pagefind'
 
 export class PagefindSearchResultItem extends HTMLElement {
-	constructor(result: PagefindResult) {
+	template = document.getElementById(
+		'template-pagefind-search-result-item',
+	) as HTMLTemplateElement
+
+	constructor(public result: PagefindResult) {
 		super()
-		const title = document.createElement('a')
-		title.href = result.url
-		title.classList.add('title')
-		title.textContent = result.meta.title || 'Untitled'
+		this.appendChild(this.template.content.cloneNode(true))
+	}
 
-		const excerpt = document.createElement('p')
-		excerpt.classList.add('excerpt')
-		excerpt.innerHTML = result.excerpt
+	connectedCallback() {
+		const link = this.querySelector('a')!
+		link.href = this.result.url
 
-		this.appendChild(title)
-		this.appendChild(excerpt)
+		const title = this.querySelector('[slot="title"]') as HTMLParagraphElement
+		title.textContent = this.result.meta.title || 'Untitled'
+
+		const excerpt = this.querySelector('.excerpt') as HTMLParagraphElement
+		excerpt.innerHTML = this.result.excerpt
 	}
 }
 

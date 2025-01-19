@@ -1,5 +1,6 @@
 ---
 import { HTMLAttributes } from 'astro/type'
+import PagefindTemplates from './PagefindTemplates.astro'
 
 type Props = HTMLAttributes<'div'> & {
 	blur?: boolean
@@ -21,6 +22,8 @@ const { class: className, blur, ...props } = Astro.props
 		window.pagefind = pagefind
 	}
 </script>
+
+<PagefindTemplates />
 
 <pagefind-search-input
 	class:list={[
@@ -48,13 +51,9 @@ const { class: className, blur, ...props } = Astro.props
 			@apply z-10 bg-transparent;
 		}
 
-		pagefind-search-result-item {
-			@apply card bg-base-100 shadow-xl p-4 flex flex-col gap-1;
-			.title {
-				@apply card-title text-lg underline break-all;
-			}
-			.excerpt {
-				@apply text-base-content text-opacity-85 break-all;
+		.excerpt {
+			mark {
+				@apply bg-primary text-primaryContent rounded-sm mx-0.5 px-0.5;
 			}
 		}
 	}

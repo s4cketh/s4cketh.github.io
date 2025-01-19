@@ -39,6 +39,8 @@ export default defineConfig({
 				'lets-icons': () =>
 					import('@iconify-json/lets-icons/icons.json').then((i) => i.default),
 				ri: () => import('@iconify-json/ri/icons.json').then((i) => i.default),
+				ion: () =>
+					import('@iconify-json/ion/icons.json').then((i) => i.default),
 			},
 		}),
 	],
