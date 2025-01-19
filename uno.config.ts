@@ -43,6 +43,10 @@ export default defineConfig({
 					import('@iconify-json/ion/icons.json').then((i) => i.default),
 				'line-md': () =>
 					import('@iconify-json/line-md/icons.json').then((i) => i.default),
+				mingcute: () =>
+					import('@iconify-json/mingcute/icons.json').then((i) => i.default),
+				mdi: () =>
+					import('@iconify-json/mdi/icons.json').then((i) => i.default),
 			},
 		}),
 	],

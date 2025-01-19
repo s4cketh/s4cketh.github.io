@@ -21,6 +21,10 @@ export default defineConfig({
 					alt: 'Meo',
 				},
 			},
+			links: {
+				bilibili: 'bilibili',
+				github: 'github',
+			},
 			pages: {
 				aboutMe: '/about',
 			},

@@ -3,6 +3,7 @@ import type { HTMLAttributes } from 'astro/types'
 import config from '../consts'
 import AuthorAvatar from './AuthorInfo/AuthorAvatar.astro'
 import Pagefind from './Pagefind'
+import OtherLinks from './AuthorInfo/OtherLinks.astro'
 
 type Props = HTMLAttributes<'header'>
 
@@ -20,6 +21,15 @@ const avatarTargetUrl = Astro.url.pathname === '/' ? '/about' : '/'
 			{config.site.title}
 		</a>
 	</div>
+
+	<!-- 大于md时展示 OtherLinks -->
+	<div class="md:block hidden">
+		<OtherLinks
+			class="flex items-center gap-2 px-2"
+			iconClass="size-6 hover:bg-primary"
+		/>
+	</div>
+
 	<!-- 小于md时展示头像 -->
 	<a href={avatarTargetUrl} class="md:hidden">
 		<AuthorAvatar

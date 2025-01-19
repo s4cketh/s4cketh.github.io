@@ -1,4 +1,9 @@
 import type { ThemeConfig } from './utils/config'
-import config from 'virtual:theme-config'
+//@ts-ignore
+import _config from 'virtual:theme-config'
 
-export default config as ThemeConfig
+const config = _config as ThemeConfig
+
+export default config
+
+export const onlyHasRss = Object.keys(config.links ?? {}).length === 0

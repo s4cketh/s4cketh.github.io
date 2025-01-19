@@ -33,6 +33,10 @@ export interface ThemeConfig {
 			alt: string
 		}
 	}
+	links?: {
+		github?: string
+		bilibili?: string
+	}
 	pages?: {
 		aboutMe?: string
 	}
