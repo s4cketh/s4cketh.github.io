@@ -19,7 +19,7 @@ import remarkGithubAdmonitionsToDirectives from 'remark-github-admonitions-to-di
 import remarkMath from 'remark-math'
 import UnoCSS from 'unocss/astro'
 import packageJson from './package.json'
-import type { ThemeConfig } from './src/theme/lib/config'
+import type { ThemeConfig } from './src/theme/utils/config'
 import unoConfig from './uno.config'
 import type { ViteUserConfig } from 'astro'
 import vue from '@astrojs/vue'

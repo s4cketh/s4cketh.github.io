@@ -4,7 +4,7 @@
 import * as d3 from 'd3'
 import { JSDOM } from 'jsdom'
 import { sortBy } from 'lodash-es'
-import { type IPostInfo, aggregateByTag } from '../../lib/post'
+import { type IPostInfo, aggregateByTag } from '../../utils/post'
 
 const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>')
 const document = dom.window.document

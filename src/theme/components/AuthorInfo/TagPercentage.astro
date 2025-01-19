@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 import { sortBy } from 'lodash-es'
-import { type IPostInfo, aggregateByTag, getTagLink } from '../../lib/post'
+import { type IPostInfo, aggregateByTag, getTagLink } from '../../utils/post'
 
 export interface Props extends HTMLAttributes<'div'> {
 	posts: IPostInfo[]

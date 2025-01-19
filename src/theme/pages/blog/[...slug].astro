@@ -2,7 +2,7 @@
 import type { InferGetStaticPropsType } from 'astro'
 import { getCollection } from 'astro:content'
 import PostLayout from '../../layouts/PostLayout.astro'
-import { getSafePostsInfo } from '../../lib/post'
+import { getSafePostsInfo } from '../../utils/post'
 
 export async function getStaticPaths() {
 	const posts = await getSafePostsInfo(getCollection('blog'))

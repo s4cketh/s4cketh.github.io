@@ -2,8 +2,8 @@
 import { Picture } from 'astro:assets'
 import type { ClassValue } from 'clsx'
 import { marked } from 'marked'
-import { formatDatetime } from '../lib/date'
-import { type IPostInfo, extractBeforeMore, getTagLink } from '../lib/post'
+import { formatDatetime } from '../utils/date'
+import { type IPostInfo, extractBeforeMore, getTagLink } from '../utils/post'
 import LinkButton from './ui/button.astro'
 
 export interface Props {

@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content'
 import Footer from '../components/Footer.astro'
 import PostCard from '../components/PostCard.astro'
 import HomeLayout from '../layouts/HomeLayout.astro'
-import { getAllPostsInfo } from '../lib/post'
+import { getAllPostsInfo } from '../utils/post'
 
 const posts = await getAllPostsInfo(getCollection('blog')).then((posts) =>
 	posts
