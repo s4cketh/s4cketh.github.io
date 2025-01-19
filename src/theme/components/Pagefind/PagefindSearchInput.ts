@@ -99,8 +99,10 @@ class PagefindSearchInput extends HTMLElement {
 
 	adjustResultsHeight() {
 		const resultRect = this.results.getBoundingClientRect()
-		const maxHeight = window.innerHeight - resultRect.top
-		this.results.style.maxHeight = `${maxHeight}px`
+		this.results.setAttribute(
+			'style',
+			`max-height:calc(100vh - ${Math.ceil(resultRect.top)}px);`,
+		)
 	}
 }
 
