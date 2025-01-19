@@ -7,6 +7,7 @@ import {
 	presetIcons,
 	transformerDirectives,
 	transformerVariantGroup,
+	transformerCompileClass,
 } from 'unocss'
 import { presetDaisy } from 'unocss-preset-daisy'
 import { presetScrollbarHide } from 'unocss-preset-scrollbar-hide'
@@ -50,5 +51,11 @@ export default defineConfig({
 			},
 		}),
 	],
-	transformers: [transformerDirectives(), transformerVariantGroup()],
+	transformers: [
+		transformerDirectives(),
+		transformerVariantGroup(),
+		transformerCompileClass({
+			classPrefix: '',
+		}),
+	],
 })

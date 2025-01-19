@@ -17,7 +17,10 @@ const summaryHtml = marked(summary)
 ---
 
 <div
-	class:list={['flex relative rounded-box border border-base-300', className]}
+	class:list={[
+		':uno: flex relative rounded-box border border-base-300',
+		className,
+	]}
 >
 	<!-- cover -->
 	{
@@ -37,37 +40,32 @@ const summaryHtml = marked(summary)
 	}
 	<div
 		class:list={[
-			'transition-colors',
-			'flex w-full flex-col p-4 gap-2 rounded-box bg-base-100/75 hover:bg-base-200/60 backdrop-blur-none',
-			'md:(p-6 gap-y-5)',
+			':uno: transition-colors flex w-full flex-col p-4 gap-2 rounded-box bg-base-100/75 hover:bg-base-200/60 backdrop-blur-none md:(p-6 gap-y-5)',
 		]}
 	>
 		<a
 			href={info.link}
 			class:list={[
-				'transition group block font-semibold text-xl relative',
-				'md:text-2xl',
-				'hover:(text-primary brightness-200)',
-				'dark:(font-bold)',
+				':uno: transition group block font-semibold text-xl relative md:text-2xl hover:(text-primary brightness-200) dark:(font-bold)',
 			]}
 		>
 			<div
 				class:list={[
-					'transition bg-primary w-1 h-full rounded-md absolute -left-4 opacity-0',
-					'md:(-left-6)',
-					'group-hover:(opacity-100)',
+					':uno: transition bg-primary w-1 h-full rounded-md absolute -left-4 opacity-0 md:(-left-6) group-hover:(opacity-100)',
 				]}
 			>
 			</div>
 			{info.title}
 			<div
-				class="i-lets-icons:expand-right size-5 stroke-primary transition absolute translate-y-1.5 md:translate-y-2 inline opacity-0 group-hover:(translate-x-1 opacity-100)"
+				class:list={[
+					':uno: i-lets-icons:expand-right size-5 stroke-primary transition absolute translate-y-1.5 md:translate-y-2 inline opacity-0 group-hover:(translate-x-1 opacity-100)',
+				]}
 			>
 			</div>
 		</a>
 
 		<!-- tags -->
-		<div class="flex items-center gap-x-2 hover:brightness-200">
+		<div class:list={[':uno: flex items-center gap-x-2 hover:brightness-200']}>
 			{
 				info.tags.map((tag) => (
 					<LinkButton
@@ -91,7 +89,7 @@ const summaryHtml = marked(summary)
 		}
 
 		<!-- metadata -->
-		<p class="text-sm font-mono break-keep whitespace-nowrap">
+		<p class:list={[':uno: text-sm font-mono break-keep whitespace-nowrap']}>
 			{formatDatetime(info.ctime)}
 			·
 			{`${info.reading.words} Words`}
