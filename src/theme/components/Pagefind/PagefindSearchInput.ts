@@ -14,13 +14,15 @@ class PagefindSearchInput extends HTMLElement {
 	mask: PagefindMask = this.querySelector('pagefind-mask')!
 
 	connectedCallback() {
-		setInterval(() => {
+		const updatePlaceholder = () => {
 			const text = translate({
 				locale: getNavigatorLocale(),
 				text: t.searchArticle,
 			})
 			this.input.placeholder = `🔍 ${text}`
-		}, 1000)
+		}
+		updatePlaceholder()
+		setInterval(updatePlaceholder, 1000)
 
 		this.input.addEventListener('keyup', (e) => {
 			if (e.isComposing) {
