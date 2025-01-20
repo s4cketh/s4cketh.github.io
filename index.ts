@@ -110,7 +110,12 @@ export default function ThemeIntegration(
 						},
 						gfm: config.markdown.gfm,
 						remarkPlugins: uniq([
-							remarkFootnotesExtra,
+							[
+								remarkFootnotesExtra,
+								{
+									breakLink: true,
+								},
+							],
 							remarkDirective,
 							remarkGithubAdmonitionsToDirectives,
 							remarkMath,
